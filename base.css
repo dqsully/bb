@@ -1,0 +1,175 @@
+body, html, div, span, a {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+
+
+.r {float: right;}              /*Float right*/
+.l {float: left;}               /*Float left*/
+.i {pointer-events: none;}      /*Invisible to clicks*/
+.u {                            /*Unselectable*/
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select :none;
+}
+.vl {                           /*Vertical line*/
+  height: 80%;
+  margin: 0 16px;
+  transform: translate(0,10%);
+  width: 1px;
+  background-color: black;
+  border-radius: 100px;
+}
+  .vl.b {                         /*Bold*/
+    width: 2px;
+  }
+  .vl.w {                         /*White*/
+    background-color: white;
+  }
+  .vl.f {                         /*Full*/
+    height: 100%;
+    transform: translate(0,0);
+  }
+  .vl.s {                         /*Slim margins*/
+    margin: 0 4px;
+  }
+  .vl.n {                         /*No margins*/
+    margin: 0;
+  }
+.hl {                           /*Horizontal line*/
+  height: 1px;
+  width: 80%;
+  margin: 8px 0;
+  transform: translate(10%,0);
+  background-color: black;
+}
+  .hl.b {                         /*Bold*/
+    height: 2px;
+  }
+  .hl.w {                         /*White*/
+    background-color: white;
+  }
+  .hl.f {                         /*Full*/
+    width: 100%;
+    transform: translate(0,0);
+  }
+  .hl.s {                         /*Slim margins*/
+    margin: 4px 0;
+  }
+  .hl.n {                         /*No margins*/
+    margin: 0;
+  }
+.sel {cursor: pointer;}         /*Link cursor*/
+.cur {cursor: default;}         /*Arrow cursor*/
+.oh {overflow: hidden;}         /*Hide overflow*/
+
+
+#sidebar {
+  position: absolute;
+  width: 70px;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: #fe3a09;
+  border-right: 1px solid black;
+  transition: width 0.6s ease;
+  overflow-x: hidden;
+}
+  #sidebar.t {
+    width: 350px;
+  }
+  #sidebar.m {
+    transition: width 0s;
+  }
+
+#icons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  border-left: 1px solid black;
+  overflow: visible;
+}
+  #icons svg{
+    cursor: pointer;
+    transition: filter .25s ease-out;
+    filter: drop-shadow(0 0 5px transparent);
+    -webkit-filter: drop-shadow(0 0 5px transparent);
+    display: block;
+    width: 70px;
+  }
+  #icons svg:hover{
+    filter: drop-shadow(0 0 5px white);
+    -webkit-filter: drop-shadow(0 0 5px white);
+  }
+  #icons svg:not(#icon-menu) {
+    height: 70px;
+  }
+  #icon-menu {
+    height: 60px;
+  }
+
+#sidebar.m #icon-menu {
+  filter: drop-shadow(0 0 5px white);
+  -webkit-filter: drop-shadow(0 0 5px white);
+}
+
+#icons-right-shadow, #icons-left-shadow, #body-left-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  z-index: 2;
+  transition: opacity 0.6s ease;
+}
+  #icons-right-shadow.m, #icons-left-shadow.m, #body-left-shadow.m {
+    transition: opacity 0s;
+  }
+#icons-right-shadow {
+  right: 0;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,.5));
+}
+#icons-left-shadow, #body-left-shadow {
+  left: 0;
+  background: linear-gradient(to left, transparent, rgba(0,0,0,.5));
+}
+
+
+#top {
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fe3a09;
+  border-bottom: 1px solid black;
+  position: absolute;
+}
+
+#body {
+  position: absolute;
+  left: 71px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: left 0.6s ease;
+}
+  #body.t {
+    left: 351px;
+  }
+  #body.m {
+    transition: width 0s;
+  }
+
+#content {
+  top: 61px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  padding: 9px;
+  overflow: auto;
+}
