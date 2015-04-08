@@ -78,107 +78,120 @@ window.addEventListener('load', function () {
   // d('icon-settings').addEventListener('click', iconSettings);
 });
 // End EventListeners
+
+//#icon-menu
+var i;
+var b;
+var irs;
+var bls;
+var s;
+window.addEventListener('load', function() {
+  i = d('icon-menu');
+  b = d('body');
+  irs = d('icons-right-shadow');
+  bls = d('body-left-shadow');
+  s = d('sidebar');
+});
+
 var menuPos;
 var menuD = false;
 var menuS;
 var menuM = false;
+var t;
+var m;
 function menuToggle() {
-  var m = d('sidebar');
-  var b = d('body');
   if(!menuM) {
-    if(m.className == 't') {
-      m.className = '';
+    if(s.className == 't') {
+      s.className = '';
       b.className = '';
     } else {
-      m.className = 't';
+      s.className = 't';
       b.className = 't';
     }
   }
-  if(m.className == 't') {
-    d('icons-right-shadow').style.opacity = 0;
-    d('body-left-shadow').style.opacity = 1;
+  if(s.className == 't') {
+    irs.style.opacity = 0;
+    bls.style.opacity = 1;
   } else {
-    d('icons-right-shadow').style.opacity = 1;
-    d('body-left-shadow').style.opacity = 0;
+    irs.style.opacity = 1;
+    bls.style.opacity = 0;
   }
   menuM = false;
 }
 function menuDown(e) {
   menuD = true;
   menuPos = e.pageX;
-  menuS = width(d('sidebar'));
+  menuS = width(s);
 }
 function menuMove(e) {
   if(menuD) {
+    t = performance.now();
     menuM = true;
-    document.body.style.cursor = 'grabbing';
-    d('icon-menu').style.cursor = 'grabbing';
-    var m = e.pageX-menuPos;
-    d('sidebar').className = 'm';
-    d('body').className = 'm';
-    d('icons-right-shadow').className = 'i m';
-    d('body-left-shadow').className = 'i m';
+    document.body.className = 'g';
+    m = e.pageX-menuPos;
+    s.className = 'm';
+    b.className = 'm';
+    irs.className = 'i m';
+    bls.className = 'i m';
     if(m+menuS>70) {
       if(m+menuS<350) {
-        d('sidebar').style.width = m + menuS + 'px';
-        d('body').style.left = m + menuS + 1 + 'px';
+        s.style.width = m + menuS + 'px';
+        b.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
         if(m+menuS-70<140) {
-          d('icons-right-shadow').style.opacity = 1 - (m+menuS-70)/140;
+          irs.style.opacity = 1 - (m+menuS-70)/140;
         } else {
-          d('body-left-shadow').style.opacity = (m+menuS-210)/140;
+          bls.style.opacity = (m+menuS-210)/140;
         }
       } else {
-        d('sidebar').className = 'm t';
-        d('sidebar').style.width = '';
-        d('body').className = 'm t';
-        d('body').style.left = '';
-        d('icons-right-shadow').style.opacity = 0;
-        d('body-left-shadow').style.opacity = 1;
+        s.className = 'm t';
+        s.style.width = '';
+        b.className = 'm t';
+        b.style.transform = '';
+        irs.style.opacity = 0;
+        bls.style.opacity = 1;
       }
     } else {
-      d('sidebar').style.width = '';
-      d('body').style.left = '';
-      d('icons-right-shadow').style.opacity = '1';
-      d('body-left-shadow').style.opacity = '0';
+      s.style.width = '';
+      b.style.transform = '';
+      irs.style.opacity = '1';
+      bls.style.opacity = '0';
     }
+    console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
   }
 }
 
 function menuUp(e) {
-  var m = d('sidebar');
-  var b = d('body');
   if(menuM) {
-    document.body.style.cursor = '';
-    d('icon-menu').style.cursor = '';
-    d('icons-right-shadow').className = 'i';
-    d('body-left-shadow').className = 'i';
-    if(m.className == 'm') {
-      m.className = '';
+    document.body.className = '';
+    irs.className = 'i';
+    bls.className = 'i';
+    if(s.className == 'm') {
+      s.className = '';
       b.className = '';
-    } else if(m.className == 'm t') {
-      m.className = 't';
+    } else if(s.className == 'm t') {
+      s.className = 't';
       b.className = 't';
     }
-    console.log(width(m));
-    if(width(m)>=210) {
-      m.className = 't';
+    if(s.offsetWidth>=210) {
+      s.className = 't';
       b.className = 't';
     }
-    m.style.width = '';
-    b.style.left = '';
+    s.style.width = '';
+    b.style.transform = '';
   }
-  if(m.className == 't') {
-    d('icons-right-shadow').style.opacity = 0;
-    d('body-left-shadow').style.opacity = 1;
+  if(s.className == 't') {
+    irs.style.opacity = 0;
+    bls.style.opacity = 1;
   } else {
-    d('icons-right-shadow').style.opacity = 1;
-    d('body-left-shadow').style.opacity = 0;
+    irs.style.opacity = 1;
+    bls.style.opacity = 0;
   }
   menuD = false;
-  if(e.target !== d('icon-menu')) {
+  if(e.target !== i) {
     menuM = false;
   }
 }
+//end #icon-menu
 
 function iconAdd() {
 
