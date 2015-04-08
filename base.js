@@ -99,6 +99,7 @@ var menuS;
 var menuM = false;
 var t;
 var m;
+var rm = 71;
 function menuToggle() {
   if(!menuM) {
     if(s.className == 't') {
@@ -121,7 +122,8 @@ function menuToggle() {
 function menuDown(e) {
   menuD = true;
   menuPos = e.pageX;
-  menuS = width(s);
+  rm = r(s);
+  menuS = rm;
 }
 function menuMove(e) {
   if(menuD) {
@@ -135,26 +137,29 @@ function menuMove(e) {
     bls.className = 'i m';
     if(m+menuS>70) {
       if(m+menuS<350) {
-        s.style.width = m + menuS + 'px';
+        s.style.transform = 'translate(-' + (350 - m - menuS) + 'px)';
         b.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
         if(m+menuS-70<140) {
           irs.style.opacity = 1 - (m+menuS-70)/140;
         } else {
           bls.style.opacity = (m+menuS-210)/140;
         }
+        rm = m + menuS;
       } else {
         s.className = 'm t';
-        s.style.width = '';
+        s.style.transform = '';
         b.className = 'm t';
         b.style.transform = '';
         irs.style.opacity = 0;
         bls.style.opacity = 1;
+        rm = 351;
       }
     } else {
-      s.style.width = '';
+      s.style.transform = '';
       b.style.transform = '';
       irs.style.opacity = '1';
       bls.style.opacity = '0';
+      rm = 71;
     }
     console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
   }
@@ -172,11 +177,11 @@ function menuUp(e) {
       s.className = 't';
       b.className = 't';
     }
-    if(s.offsetWidth>=210) {
+    if(rm>=210) {
       s.className = 't';
       b.className = 't';
     }
-    s.style.width = '';
+    s.style.transform = '';
     b.style.transform = '';
   }
   if(s.className == 't') {
