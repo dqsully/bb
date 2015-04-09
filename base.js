@@ -62,7 +62,7 @@ window.addEventListener('load', function () {
   //#icon-menu
   d('icon-menu').addEventListener('mousedown', menuDown);
   d('icon-menu').addEventListener('touchstart', function(e) {
-    menuMove(e.touches[0]);
+    menuDown(e.touches[0]);
   });
   document.addEventListener('mousemove', menuMove);
   document.addEventListener('touchmove', function(e) {
@@ -204,6 +204,7 @@ function menuUp(e) {
     bls.style.opacity = 0;
   }
   menuD = false;
+  console.log(e);
   if(e.target !== i) {
     menuM = false;
   }
