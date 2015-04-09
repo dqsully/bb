@@ -67,6 +67,7 @@ window.addEventListener('load', function () {
     // console.log(e.touches[0]);
     menuMove(e.touches[0]);
   });
+  document.addEventListener('mousemove', menuMove);
   document.addEventListener('mouseup', menuUp);
   document.addEventListener('touchend', menuUp);
   d('icon-menu').addEventListener('click', menuToggle);
