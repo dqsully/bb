@@ -64,6 +64,9 @@ window.addEventListener('load', function () {
   document.addEventListener('mousemove', menuMove);
   document.addEventListener('mouseup', menuUp);
   d('icon-menu').addEventListener('click', menuToggle);
+  d('icon-menu').addEventListener('touchmove', function(e) {
+    e.preventDefault();
+  });
   //#icon-add
   d('icon-add').addEventListener('click', iconAdd);
   //#icon-search
