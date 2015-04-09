@@ -93,9 +93,7 @@ window.addEventListener('load', function () {
   d('icons-cont').addEventListener('wheel', menuScroll);
   //#icon-menu
   d('icon-menu').addEventListener('mousedown', menuDown);
-  d('icon-menu').addEventListener('touchstart', function(e) {
-    menuDown(e.touches[0]);
-  });
+  d('icon-menu').addEventListener('touchstart', menuTouchDown);
   document.addEventListener('mousemove', menuMove);
   document.addEventListener('touchmove', function(e) {
     if(menuD) e.preventDefault();
@@ -168,6 +166,13 @@ function menuToggle() {
 function menuDown(e) {
   menuD = true;
   menuPos = e.pageX;
+  rm = r(s);
+  menuS = rm;
+}
+function menuTouchDown(e) {
+  console.log(e);
+  menuD = true;
+  menuPos = e.touches[0].pageX;
   rm = r(s);
   menuS = rm;
 }
