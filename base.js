@@ -61,15 +61,14 @@ document.addEventListener('click' ,function(e) {
 window.addEventListener('load', function () {
   //#icon-menu
   d('icon-menu').addEventListener('mousedown', menuDown);
-  d('icon-menu').addEventListener('touchdown', menuDown);
-  document.addEventListener('mousemove', menuMove);
+  d('icon-menu').addEventListener('touchdownstart' menuMove);
   document.addEventListener('touchmove', function(e) {
     e.preventDefault();
     // console.log(e.touches[0]);
     menuMove(e.touches[0]);
   });
   document.addEventListener('mouseup', menuUp);
-  document.addEventListener('touchup', menuUp);
+  document.addEventListener('touchend', menuUp);
   d('icon-menu').addEventListener('click', menuToggle);
   //#icon-add
   d('icon-add').addEventListener('click', iconAdd);
