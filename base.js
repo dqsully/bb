@@ -59,6 +59,8 @@ document.addEventListener('click' ,function(e) {
 
 // Begin EventListeners
 window.addEventListener('load', function () {
+  //#icon-cont
+  d('icons-cont').addEventListener('wheel', menuScroll);
   //#icon-menu
   d('icon-menu').addEventListener('mousedown', menuDown);
   d('icon-menu').addEventListener('touchstart', function(e) {
@@ -66,7 +68,7 @@ window.addEventListener('load', function () {
   });
   document.addEventListener('mousemove', menuMove);
   document.addEventListener('touchmove', function(e) {
-    e.preventDefault();
+    if(menuD) e.preventDefault();
     menuMove(e.touches[0]);
   });
   document.addEventListener('mouseup', menuUp);
@@ -95,12 +97,14 @@ var b;
 var irs;
 var bls;
 var s;
+var ic;
 window.addEventListener('load', function() {
   i = d('icon-menu');
   b = d('body');
   irs = d('icons-right-shadow');
   bls = d('body-left-shadow');
   s = d('sidebar');
+  ic = d('icons-cont');
 });
 
 var menuPos;
@@ -110,6 +114,7 @@ var menuM = false;
 var t;
 var m;
 var rm = 71;
+var sm = 0;
 function menuToggle() {
   if(!menuM) {
     if(s.className == 't') {
@@ -130,7 +135,6 @@ function menuToggle() {
   menuM = false;
 }
 function menuDown(e) {
-  console.log('down');
   menuD = true;
   menuPos = e.pageX;
   rm = r(s);
@@ -142,7 +146,6 @@ function menuMove(e) {
     menuM = true;
     document.body.className = 'g';
     m = e.pageX-menuPos;
-    console.log(m);
     s.className = 'm';
     b.className = 'm';
     irs.className = 'i m';
@@ -204,9 +207,23 @@ function menuUp(e) {
     bls.style.opacity = 0;
   }
   menuD = false;
-  console.log(e);
   if(e.target !== i) {
     menuM = false;
+  }
+}
+
+function menuScroll(e) {
+  if(ic.offsetHeight > icons.offsetHeight) {
+    sm += e.deltaY * 16;
+    if(sm + icons.offsetHeight < ic.offsetHeight && sm > 0) {
+      ic.style.marginTop = '-' + sm + 'px';
+    } else if(sm + icons.offsetHeight >= ic.offsetHeight) {
+      ic.style.marginTop = '-' + (ic.offsetHeight - icons.offsetHeight) + 'px';
+      sm = ic.offsetHeight - icons.offsetHeight;
+    } else if(sm < 0) {
+      ic.style.marginTop = '0';
+      sm = 0;
+    }
   }
 }
 //end #icon-menu

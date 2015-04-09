@@ -101,7 +101,7 @@ body.g *, body.g {
   bottom: 0;
   width: 70px;
   border-left: 1px solid black;
-  overflow: visible;
+  overflow: hidden;
 }
   #icons svg{
     cursor: pointer;
