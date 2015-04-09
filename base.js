@@ -61,7 +61,7 @@ document.addEventListener('click' ,function(e) {
 window.addEventListener('load', function () {
   //#icon-menu
   d('icon-menu').addEventListener('mousedown', menuDown);
-  d('icon-menu').addEventListener('touchstart', menuMove);
+  d('icon-menu').addEventListener('touchstart', menuDown);
   document.addEventListener('touchmove', function(e) {
     e.preventDefault();
     // console.log(e.touches[0]);
