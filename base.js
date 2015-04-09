@@ -66,6 +66,7 @@ window.addEventListener('load', function () {
   d('icon-menu').addEventListener('click', menuToggle);
   d('icon-menu').addEventListener('touchmove', function(e) {
     e.preventDefault();
+    console.log(e);
   });
   //#icon-add
   d('icon-add').addEventListener('click', iconAdd);
