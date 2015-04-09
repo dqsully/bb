@@ -61,15 +61,18 @@ document.addEventListener('click' ,function(e) {
 window.addEventListener('load', function () {
   //#icon-menu
   d('icon-menu').addEventListener('mousedown', menuDown);
-  d('icon-menu').addEventListener('touchstart', menuDown);
-  document.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-    // console.log(e.touches[0]);
+  d('icon-menu').addEventListener('touchstart', function(e) {
     menuMove(e.touches[0]);
   });
   document.addEventListener('mousemove', menuMove);
+  document.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    menuMove(e.touches[0]);
+  });
   document.addEventListener('mouseup', menuUp);
-  document.addEventListener('touchend', menuUp);
+  document.addEventListener('touchend', function(e) {
+    menuUp(e.touches[0]);
+  });
   d('icon-menu').addEventListener('click', menuToggle);
   //#icon-add
   d('icon-add').addEventListener('click', iconAdd);
