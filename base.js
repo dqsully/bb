@@ -71,7 +71,7 @@ window.addEventListener('load', function () {
   });
   document.addEventListener('mouseup', menuUp);
   document.addEventListener('touchend', function(e) {
-    menuUp(e.touches[0]);
+    menuUp(e);
   });
   d('icon-menu').addEventListener('click', menuToggle);
   //#icon-add
