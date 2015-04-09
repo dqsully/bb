@@ -134,7 +134,8 @@ function menuDown(e) {
 }
 function menuMove(e) {
   if(menuD) {
-    t = performance.now();
+    // t = performance.now();
+    console.log(e);
     menuM = true;
     document.body.className = 'g';
     m = e.pageX-menuPos;
@@ -168,7 +169,7 @@ function menuMove(e) {
       bls.style.opacity = '0';
       rm = 71;
     }
-    console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
+    // console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
   }
 }
 
