@@ -65,7 +65,7 @@ window.addEventListener('load', function () {
   document.addEventListener('mousemove', menuMove);
   document.addEventListener('touchmove', function(e) {
     e.preventDefault();
-    console.log(e);
+    // console.log(e.touches[0]);
     menuMove(e.touches[0]);
   });
   document.addEventListener('mouseup', menuUp);
@@ -127,6 +127,7 @@ function menuToggle() {
   menuM = false;
 }
 function menuDown(e) {
+  console.log('down');
   menuD = true;
   menuPos = e.pageX;
   rm = r(s);
