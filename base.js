@@ -135,10 +135,10 @@ function menuDown(e) {
 function menuMove(e) {
   if(menuD) {
     // t = performance.now();
-    console.log(e);
     menuM = true;
     document.body.className = 'g';
     m = e.pageX-menuPos;
+    console.log(m);
     s.className = 'm';
     b.className = 'm';
     irs.className = 'i m';
