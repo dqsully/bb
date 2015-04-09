@@ -106,6 +106,7 @@ window.addEventListener('load', function () {
     menuUp(e);
   });
   d('icon-menu').addEventListener('click', menuToggle);
+  window.addEventListener('resize', menuResize);
   //#icon-add
   d('icon-add').addEventListener('click', iconAdd);
   //#icon-search
@@ -253,12 +254,23 @@ function menuScroll(e) {
     if(sm + icons.offsetHeight < ic.offsetHeight && sm > 0) {
       ic.style.marginTop = '-' + sm + 'px';
     } else if(sm + icons.offsetHeight >= ic.offsetHeight) {
-      ic.style.marginTop = '-' + (ic.offsetHeight - icons.offsetHeight) + 'px';
       sm = ic.offsetHeight - icons.offsetHeight;
+      ic.style.marginTop = '-' + sm + 'px';
     } else if(sm < 0) {
       ic.style.marginTop = '0';
       sm = 0;
     }
+  }
+}
+
+function menuResize() {
+  if(sm + icons.offsetHeight >= ic.offsetHeight) {
+    sm = ic.offsetHeight - icons.offsetHeight;
+    ic.style.marginTop = '-' + sm + 'px';
+  }
+  if(sm < 0) {
+    ic.style.marginTop = '0';
+    sm = 0;
   }
 }
 //end #icon-menu
