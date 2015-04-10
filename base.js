@@ -100,14 +100,14 @@ window.addEventListener('load', function () {
   d('icons-cont').addEventListener(   'wheel',          function(e) {menuScroll(e.deltaY, true);});
   window.addEventListener(            'resize',         menuResize);
   d('icons-cont').addEventListener(   'mousedown',      function(e) {iconsDown(e.pageY, e.target);});
-  d('icons-cont').addEventListener(   'pointerdown',    function(e) {console.log(e);iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'pointerdown',    function(e) {iconsDown(e.pageY, e.target);});
   d('icons-cont').addEventListener(   'touchstart',     function(e) {iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
   document.addEventListener(          'mousemove',      function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'pointermove',    function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'touchmove',      function(e) {iconsMove(getTouchById(e, iti).pageY);});
   document.addEventListener(          'mouseup',        function(e) {iconsUp();});
   document.addEventListener(          'pointerup',      function(e) {iconsUp();});
-  document.addEventListener(          'touchup',        function(e) {iconsUp();});
+  document.addEventListener(          'touchend',        function(e) {iconsUp();});
   //#icon-menu
   d('icon-menu').addEventListener(    'mousedown',      function(e) {menuDown(e.pageX);});
   d('icon-menu').addEventListener(    'pointerdown',    function(e) {menuDown(e.pageX);});
@@ -287,8 +287,8 @@ function menuResize() {
 }
 function iconsDown(e, t) {
   if(t.id != 'icon-menu') {
-  iconsD = true;
-  iconsPos = e;
+    iconsD = true;
+    iconsPos = e;
   }
 }
 function iconsMove(e) {
