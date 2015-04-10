@@ -97,35 +97,45 @@ function getTouchById(e, id) {
 // Begin EventListeners
 window.addEventListener('load', function () {
   //#icon-cont
-  d('icons-cont').addEventListener('wheel', function(e) {menuScroll(e.deltaY);});
-  window.addEventListener('resize', menuResize);
+  d('icons-cont').addEventListener(   'wheel',        function(e) {menuScroll(e.deltaY, true);});
+  window.addEventListener(            'resize',       menuResize);
+  d('icons-cont').addEventListener(   'mousedown',    function(e) {iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'pointerdown',  function(e) {iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'touchstart',   function(e) {iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
+  document.addEventListener(          'mousemove',    function(e) {iconsMove(e.pageY);});
+  document.addEventListener(          'pointermove',  function(e) {iconsMove(e.pageY);});
+  document.addEventListener(          'touchmove',    function(e) {iconsMove(getTouchById(e, iti).pageY);});
+  document.addEventListener(          'mouseup',      function(e) {iconsUp();});
+  document.addEventListener(          'pointerup',    function(e) {iconsUp();});
+  document.addEventListener(          'touchup',      function(e) {iconsUp();});
   //#icon-menu
-  d('icon-menu').addEventListener('mousedown', menuDown);
-  d('icon-menu').addEventListener('pointerdown', menuDown);
-  d('icon-menu').addEventListener('touchstart', menuTouchDown);
-  document.addEventListener('mousemove', menuMove);
-  document.addEventListener('pointermove', menuMove);
-  document.addEventListener('touchmove', menuTouchMove);
-  document.addEventListener('mouseup', menuUp);
-  document.addEventListener('pointerup', menuUp);
-  document.addEventListener('touchend', menuTouchUp);
-  d('icon-menu').addEventListener('click', menuToggle);
+  d('icon-menu').addEventListener(    'mousedown',    function(e) {menuDown(e.pageX);});
+  d('icon-menu').addEventListener(    'pointerdown',  function(e) {menuDown(e.pageX);});
+  d('icon-menu').addEventListener(    'touchstart',   function(e) {menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier;});
+  document.addEventListener(          'mousemove',    function(e) {menuMove(e.pageX);});
+  document.addEventListener(          'pointermove',  function(e) {menuMove(e.pageX);});
+  document.addEventListener(          'touchmove',    function(e) {menuMove(getTouchByID(e, mti).pageX);});
+  document.addEventListener(          'mouseup',      function(e) {menuUp(e.target);});
+  document.addEventListener(          'pointerup',    function(e) {menuUp(e.target);});
+  document.addEventListener(          'touchend',     function(e) {menuUp(getTouchById(e, mti).target);});
+  d('icon-menu').addEventListener(    'click',        menuToggle);
   //#icon-add
-  d('icon-add').addEventListener('click', iconAdd);
+  d('icon-add').addEventListener(     'click',        iconAdd);
   //#icon-search
-  d('icon-search').addEventListener('click', iconSearch);
+  d('icon-search').addEventListener(  'click',        iconSearch);
   //#icon-adjust
-  d('icon-adjust').addEventListener('click', iconAdjust);
+  d('icon-adjust').addEventListener(  'click',        iconAdjust);
   //#icon-diff
-  d('icon-diff').addEventListener('click', iconDiff);
+  d('icon-diff').addEventListener(    'click',        iconDiff);
   //#icon-account
-  d('icon-account').addEventListener('click', iconAccount);
+  d('icon-account').addEventListener( 'click',        iconAccount);
   //#icon-settings
-  // d('icon-settings').addEventListener('click', iconSettings);
+  d('icon-settings').addEventListener('click',        iconSettings);
 });
 // End EventListeners
 
 //#icon-menu
+var mti;
 var iti;
 
 var i;
@@ -147,10 +157,10 @@ var menuPos;
 var menuD = false;
 var menuS;
 var menuM = false;
-var t;
-var m;
 var rm = 71;
 var sm = 0;
+var iconsD = false;
+var iconsPos;
 function menuToggle() {
   if(!menuM) {
     if(s.className == 't') {
@@ -172,14 +182,7 @@ function menuToggle() {
 }
 function menuDown(e) {
   menuD = true;
-  menuPos = e.pageX;
-  rm = r(s);
-  menuS = rm;
-}
-function menuTouchDown(e) {
-  iti = e.targetTouches[0].identifier;
-  menuD = true;
-  menuPos = e.targetTouches[0].pageX;
+  menuPos = e;
   rm = r(s);
   menuS = rm;
 }
@@ -188,46 +191,7 @@ function menuMove(e) {
     // t = performance.now();
     menuM = true;
     document.body.className = 'g';
-    m = e.pageX-menuPos;
-    s.className = 'm';
-    b.className = 'm';
-    irs.className = 'i m';
-    bls.className = 'i m';
-    if(m+menuS>70) {
-      if(m+menuS<350) {
-        s.style.transform = 'translate(-' + (350 - m - menuS) + 'px)';
-        b.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
-        if(m+menuS-70<140) {
-          irs.style.opacity = 1 - (m+menuS-70)/140;
-        } else {
-          bls.style.opacity = (m+menuS-210)/140;
-        }
-        rm = m + menuS;
-      } else {
-        s.className = 'm t';
-        s.style.transform = '';
-        b.className = 'm t';
-        b.style.transform = '';
-        irs.style.opacity = 0;
-        bls.style.opacity = 1;
-        rm = 351;
-      }
-    } else {
-      s.style.transform = '';
-      b.style.transform = '';
-      irs.style.opacity = '1';
-      bls.style.opacity = '0';
-      rm = 71;
-    }
-    // console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
-  }
-}
-function menuTouchMove(e) {
-  if(menuD) {
-    // t = performance.now();
-    menuM = true;
-    document.body.className = 'g';
-    m = getTouchByID(e, iti).pageX-menuPos;
+    m = e-menuPos;
     s.className = 'm';
     b.className = 'm';
     irs.className = 'i m';
@@ -288,61 +252,29 @@ function menuUp(e) {
     bls.style.opacity = 0;
   }
   menuD = false;
-  if(e.target !== i) {
+  if(e !== i) {
     menuM = false;
   }
 }
-function menuTouchUp(e) {
-  if(menuM) {
-    document.body.className = '';
-    irs.className = 'i';
-    bls.className = 'i';
-    if(s.className == 'm') {
-      s.className = '';
-      b.className = '';
-    } else if(s.className == 'm t') {
-      s.className = 't';
-      b.className = 't';
-    }
-    if(rm>=210) {
-      s.className = 't';
-      b.className = 't';
-    }
-    s.style.transform = '';
-    b.style.transform = '';
-  }
-  if(s.className == 't') {
-    irs.style.opacity = 0;
-    bls.style.opacity = 1;
-  } else {
-    irs.style.opacity = 1;
-    bls.style.opacity = 0;
-  }
-  menuD = false;
-  if(getTouchById(e, iti).target !== i) {
-    menuM = false;
-  }
-}
-function menuScroll(d) {
+function menuScroll(d, b) {
   if(ic.offsetHeight > icons.offsetHeight) {
     // sm += e.deltaY * 16;
-    if(navigator.browser == 'Firefox') {
+    if(navigator.browser == 'Firefox' && b === true) {
       sm += d * 16;
     } else {
       sm += d;
     }
     if(sm + icons.offsetHeight < ic.offsetHeight && sm > 0) {
-      ic.style.marginTop = '-' + sm + 'px';
+      ic.style.transform = 'translate(0,-' + sm + 'px)';
     } else if(sm + icons.offsetHeight >= ic.offsetHeight) {
       sm = ic.offsetHeight - icons.offsetHeight;
-      ic.style.marginTop = '-' + sm + 'px';
+      ic.style.transform = 'translate(0,-' + sm + 'px)';
     } else if(sm < 0) {
-      ic.style.marginTop = '0';
+      ic.style.transform = '';
       sm = 0;
     }
   }
 }
-
 function menuResize() {
   if(sm + icons.offsetHeight >= ic.offsetHeight) {
     sm = ic.offsetHeight - icons.offsetHeight;
@@ -352,6 +284,21 @@ function menuResize() {
     ic.style.marginTop = '0';
     sm = 0;
   }
+}
+function iconsDown(e, t) {
+  if(t.id != 'icon-menu') {
+  iconsD = true;
+  iconsPos = e;
+  }
+}
+function iconsMove(e) {
+  if(iconsD) {
+    menuScroll(iconsPos-e, false);
+    iconsPos = e;
+  }
+}
+function iconsUp() {
+  iconsD = false;
 }
 //end #icon-menu
 
