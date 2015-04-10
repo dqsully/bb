@@ -293,11 +293,13 @@ function iconsDown(e, t) {
 }
 function iconsMove(e) {
   if(iconsD) {
+    document.body.className = 'g';
     menuScroll(iconsPos-e, false);
     iconsPos = e;
   }
 }
 function iconsUp() {
+  document.body.className = '';
   iconsD = false;
 }
 //end #icon-menu
