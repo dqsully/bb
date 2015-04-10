@@ -111,13 +111,13 @@ window.addEventListener('load', function () {
   //#icon-menu
   d('icon-menu').addEventListener(    'mousedown',      function(e) {menuDown(e.pageX);});
   d('icon-menu').addEventListener(    'pointerdown',    function(e) {menuDown(e.pageX);});
-  d('icon-menu').addEventListener(    'touchstart',     function(e) {e.preventDefault();menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier;});
+  d('icon-menu').addEventListener(    'touchstart',     function(e) {e.preventDefault();menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier});
   document.addEventListener(          'mousemove',      function(e) {menuMove(e.pageX);});
   document.addEventListener(          'pointermove',    function(e) {menuMove(e.pageX);});
   document.addEventListener(          'touchmove',      function(e) {menuMove(getTouchByID(e, mti).pageX);});
   document.addEventListener(          'mouseup',        function(e) {menuUp(e.target);});
   document.addEventListener(          'pointerup',      function(e) {menuUp(e.target);});
-  document.addEventListener(          'touchend',       function(e) {menuUp(getTouchByID(e, mti).target);});
+  document.addEventListener(          'touchend',       function(e) {menuUp(e.target);});
   d('icon-menu').addEventListener(    'click',          menuToggle);
   //#icon-add
   d('icon-add').addEventListener(     'click',          iconAdd);
