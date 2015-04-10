@@ -11,7 +11,7 @@ body {
 
 body.g *, body.g {
   cursor: -moz-grabbing !important;
-  cursor url(http://www.google.com/intl/en_ALL/mapfiles/closedhand.cur) !important;
+  cursor: url(http://www.google.com/intl/en_ALL/mapfiles/closedhand.cur) !important;
 }
 
 
