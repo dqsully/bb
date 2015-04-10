@@ -11,7 +11,8 @@ body {
 
 body.g *, body.g {
   cursor:  -webkit-grabbing !important;
-  cursor: grabbing, move !important;
+  cursor: -moz-grabbing !important;
+  cursor: move !important;
 }
 
 
