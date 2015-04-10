@@ -175,7 +175,6 @@ function menuDown(e) {
   menuPos = e.pageX;
   rm = r(s);
   menuS = rm;
-  e.stopPropogation();
 }
 function menuTouchDown(e) {
   iti = e.targetTouches[0].identifier;
@@ -183,7 +182,6 @@ function menuTouchDown(e) {
   menuPos = e.targetTouches[0].pageX;
   rm = r(s);
   menuS = rm;
-  e.stopPropogation();
 }
 function menuMove(e) {
   if(menuD) {
@@ -222,7 +220,6 @@ function menuMove(e) {
       rm = 71;
     }
     // console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
-    e.stopPropogation();
   }
 }
 function menuTouchMove(e) {
@@ -262,7 +259,6 @@ function menuTouchMove(e) {
       rm = 71;
     }
     // console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
-    e.stopPropogation();
   }
 }
 function menuUp(e) {
@@ -295,7 +291,6 @@ function menuUp(e) {
   if(e.target !== i) {
     menuM = false;
   }
-  e.stopPropogation();
 }
 function menuTouchUp(e) {
   if(menuM) {
@@ -327,7 +322,6 @@ function menuTouchUp(e) {
   if(getTouchById(e, iti).target !== i) {
     menuM = false;
   }
-  e.stopPropogation();
 }
 function menuScroll(d) {
   if(ic.offsetHeight > icons.offsetHeight) {
