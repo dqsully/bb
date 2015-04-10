@@ -97,40 +97,41 @@ function getTouchById(e, id) {
 // Begin EventListeners
 window.addEventListener('load', function () {
   //#icon-cont
-  d('icons-cont').addEventListener(   'wheel',        function(e) {menuScroll(e.deltaY, true);});
-  window.addEventListener(            'resize',       menuResize);
-  d('icons-cont').addEventListener(   'mousedown',    function(e) {iconsDown(e.pageY, e.target);});
-  d('icons-cont').addEventListener(   'pointerdown',  function(e) {console.log(e);iconsDown(e.pageY, e.target);});
-  d('icons-cont').addEventListener(   'touchstart',   function(e) {iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
-  document.addEventListener(          'mousemove',    function(e) {iconsMove(e.pageY);});
-  document.addEventListener(          'pointermove',  function(e) {console.log(e);iconsMove(e.pageY);});
-  document.addEventListener(          'touchmove',    function(e) {iconsMove(getTouchById(e, iti).pageY);});
-  document.addEventListener(          'mouseup',      function(e) {iconsUp();});
-  document.addEventListener(          'pointerup',    function(e) {console.log(e);iconsUp();});
-  document.addEventListener(          'touchup',      function(e) {iconsUp();});
+  d('icons-cont').addEventListener(   'wheel',          function(e) {menuScroll(e.deltaY, true);});
+  window.addEventListener(            'resize',         menuResize);
+  d('icons-cont').addEventListener(   'mousedown',      function(e) {iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'pointerdown',    function(e) {iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'touchstart',     function(e) {iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
+  document.addEventListener(          'mousemove',      function(e) {iconsMove(e.pageY);});
+  document.addEventListener(          'pointermove',    function(e) {iconsMove(e.pageY);});
+  document.addEventListener(          'msgesturechange',function(e) {console.log(e);});
+  document.addEventListener(          'touchmove',      function(e) {iconsMove(getTouchById(e, iti).pageY);});
+  document.addEventListener(          'mouseup',        function(e) {iconsUp();});
+  document.addEventListener(          'pointerup',      function(e) {iconsUp();});
+  document.addEventListener(          'touchup',        function(e) {iconsUp();});
   //#icon-menu
-  d('icon-menu').addEventListener(    'mousedown',    function(e) {menuDown(e.pageX);});
-  d('icon-menu').addEventListener(    'pointerdown',  function(e) {menuDown(e.pageX);});
-  d('icon-menu').addEventListener(    'touchstart',   function(e) {menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier;});
-  document.addEventListener(          'mousemove',    function(e) {menuMove(e.pageX);});
-  document.addEventListener(          'pointermove',  function(e) {menuMove(e.pageX);});
-  document.addEventListener(          'touchmove',    function(e) {menuMove(getTouchByID(e, mti).pageX);});
-  document.addEventListener(          'mouseup',      function(e) {menuUp(e.target);});
-  document.addEventListener(          'pointerup',    function(e) {menuUp(e.target);});
-  document.addEventListener(          'touchend',     function(e) {menuUp(getTouchById(e, mti).target);});
-  d('icon-menu').addEventListener(    'click',        menuToggle);
+  d('icon-menu').addEventListener(    'mousedown',      function(e) {menuDown(e.pageX);});
+  d('icon-menu').addEventListener(    'pointerdown',    function(e) {menuDown(e.pageX);});
+  d('icon-menu').addEventListener(    'touchstart',     function(e) {menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier;});
+  document.addEventListener(          'mousemove',      function(e) {menuMove(e.pageX);});
+  document.addEventListener(          'pointermove',    function(e) {menuMove(e.pageX);});
+  document.addEventListener(          'touchmove',      function(e) {menuMove(getTouchByID(e, mti).pageX);});
+  document.addEventListener(          'mouseup',        function(e) {menuUp(e.target);});
+  document.addEventListener(          'pointerup',      function(e) {menuUp(e.target);});
+  document.addEventListener(          'touchend',       function(e) {menuUp(getTouchById(e, mti).target);});
+  d('icon-menu').addEventListener(    'click',          menuToggle);
   //#icon-add
-  d('icon-add').addEventListener(     'click',        iconAdd);
+  d('icon-add').addEventListener(     'click',          iconAdd);
   //#icon-search
-  d('icon-search').addEventListener(  'click',        iconSearch);
+  d('icon-search').addEventListener(  'click',          iconSearch);
   //#icon-adjust
-  d('icon-adjust').addEventListener(  'click',        iconAdjust);
+  d('icon-adjust').addEventListener(  'click',          iconAdjust);
   //#icon-diff
-  d('icon-diff').addEventListener(    'click',        iconDiff);
+  d('icon-diff').addEventListener(    'click',          iconDiff);
   //#icon-account
-  d('icon-account').addEventListener( 'click',        iconAccount);
+  d('icon-account').addEventListener( 'click',          iconAccount);
   //#icon-settings
-  d('icon-settings').addEventListener('click',        iconSettings);
+  d('icon-settings').addEventListener('click',          iconSettings);
 });
 // End EventListeners
 
