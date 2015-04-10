@@ -85,7 +85,7 @@ navigator.browser= (function(){
     return M[1];
 })();
 
-function getTouchById(e, id) {
+function getTouchByID(e, id) {
   for(var i=0; i<e.touches.length; i++) {
     if(e.touches[i].identifier == id) return e.touches[i];
   }
@@ -104,7 +104,7 @@ window.addEventListener('load', function () {
   d('icons-cont').addEventListener(   'touchstart',     function(e) {e.preventDefault();iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
   document.addEventListener(          'mousemove',      function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'pointermove',    function(e) {iconsMove(e.pageY);});
-  document.addEventListener(          'touchmove',      function(e) {iconsMove(getTouchById(e, iti).pageY);});
+  document.addEventListener(          'touchmove',      function(e) {iconsMove(getTouchByID(e, iti).pageY);});
   document.addEventListener(          'mouseup',        function(e) {iconsUp();});
   document.addEventListener(          'pointerup',      function(e) {iconsUp();});
   document.addEventListener(          'touchend',        function(e) {iconsUp();});
@@ -117,7 +117,7 @@ window.addEventListener('load', function () {
   document.addEventListener(          'touchmove',      function(e) {menuMove(getTouchByID(e, mti).pageX);});
   document.addEventListener(          'mouseup',        function(e) {menuUp(e.target);});
   document.addEventListener(          'pointerup',      function(e) {menuUp(e.target);});
-  document.addEventListener(          'touchend',       function(e) {menuUp(getTouchById(e, mti).target);});
+  document.addEventListener(          'touchend',       function(e) {menuUp(getTouchByID(e, mti).target);});
   d('icon-menu').addEventListener(    'click',          menuToggle);
   //#icon-add
   d('icon-add').addEventListener(     'click',          iconAdd);
@@ -187,7 +187,6 @@ function menuDown(e) {
   menuS = rm;
 }
 function menuMove(e) {
-  console.log(e);
   if(menuD) {
     // t = performance.now();
     menuM = true;
