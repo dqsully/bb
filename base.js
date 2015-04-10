@@ -100,7 +100,8 @@ window.addEventListener('load', function () {
   d('icons-cont').addEventListener(   'wheel',          function(e) {menuScroll(e.deltaY, true);});
   window.addEventListener(            'resize',         menuResize);
   d('icons-cont').addEventListener(   'mousedown',      function(e) {iconsDown(e.pageY, e.target);});
-  d('icons-cont').addEventListener(   'pointerdown',    function(e) {iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'pointerdown',    function(e) {console.log(e);iconsDown(e.pageY, e.target);});
+  d('icons-cont').addEventListener(   'msgesterstart',  function(e) {console.log(e);});
   d('icons-cont').addEventListener(   'touchstart',     function(e) {iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
   document.addEventListener(          'mousemove',      function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'pointermove',    function(e) {iconsMove(e.pageY);});
