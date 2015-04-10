@@ -10,7 +10,7 @@ body {
 }
 
 body.g *, body.g {
-  cursor: ns-resize !important;
+  cursor: grabbing, all-scroll !important;
 }
 
 
