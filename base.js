@@ -187,6 +187,7 @@ function menuDown(e) {
   menuS = rm;
 }
 function menuMove(e) {
+  console.log(e);
   if(menuD) {
     // t = performance.now();
     menuM = true;
