@@ -10,7 +10,8 @@ body {
 }
 
 body.g *, body.g {
-  cursor: grabbing, -webkit-grabbing, move !important;
+  cursor:  -webkit-grabbing;
+  cursor: grabbing, move !important;
 }
 
 
