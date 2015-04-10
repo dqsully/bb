@@ -107,7 +107,7 @@ window.addEventListener('load', function () {
   document.addEventListener(          'touchmove',      function(e) {iconsMove(getTouchById(e, iti).pageY);});
   document.addEventListener(          'mouseup',        function(e) {iconsUp();});
   document.addEventListener(          'pointerup',      function(e) {iconsUp();});
-  document.addEventListener(          'touchup',        function(e) {iconsUp();});
+  document.addEventListener(          'touchend',        function(e) {iconsUp();});
   //#icon-menu
   d('icon-menu').addEventListener(    'mousedown',      function(e) {menuDown(e.pageX);});
   d('icon-menu').addEventListener(    'pointerdown',    function(e) {menuDown(e.pageX);});
