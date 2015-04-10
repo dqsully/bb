@@ -6,6 +6,7 @@ body, html, div, span, a {
 
 body {
   overflow: hidden;
+  touch-action: none;
 }
 
 body.g *, body.g {
