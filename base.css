@@ -108,7 +108,7 @@ body.g *, body.g {
 }
   #icons svg{
     cursor: pointer;
-    transition: filter .25s ease-out;
+    transition: filter .25s ease-out, -webkit-filter .25s ease-out;
     filter: drop-shadow(0 0 5px transparent);
     -webkit-filter: drop-shadow(0 0 5px transparent);
     display: block;
@@ -159,6 +159,21 @@ body.g *, body.g {
   background-color: #fe3a09;
   border-bottom: 1px solid black;
   position: absolute;
+}
+
+#title {
+  height: 60px;
+  box-sizing: border-box;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: Dotum;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  line-height: 1;
+  color: white;
+  position: absolute;
+  letter-spacing: -1px;
 }
 
 #body {
