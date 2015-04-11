@@ -135,30 +135,37 @@ window.addEventListener('load', function () {
   d('icon-menu').addEventListener(    'click',          menuToggle);
   d('icon-menu').addEventListener(    'mouseenter',     function(e) {tryTip(d('tip-icon-menu'));});
   d('icon-menu').addEventListener(    'mouseleave',     function(e) {stopTip(d('tip-icon-menu'));});
+  d('icon-menu').addEventListener(    'contextmenu',    function(e) {ctxTip(e, d('tip-icon-menu'));});
   //#icon-add
   d('icon-add').addEventListener(     'click',          iconAdd);
   d('icon-add').addEventListener(     'mouseenter',     function(e) {tryTip(d('tip-icon-add'));});
   d('icon-add').addEventListener(     'mouseleave',     function(e) {stopTip(d('tip-icon-add'));});
+  d('icon-add').addEventListener(     'contextmenu',    function(e) {ctxTip(e, d('tip-icon-add'));});
   //#icon-search
   d('icon-search').addEventListener(  'click',          iconSearch);
   d('icon-search').addEventListener(  'mouseenter',     function(e) {tryTip(d('tip-icon-search'));});
   d('icon-search').addEventListener(  'mouseleave',     function(e) {stopTip(d('tip-icon-search'));});
+  d('icon-search').addEventListener(  'contextmenu',    function(e) {ctxTip(e, d('tip-icon-search'));});
   //#icon-adjust
   d('icon-adjust').addEventListener(  'click',          iconAdjust);
   d('icon-adjust').addEventListener(  'mouseenter',     function(e) {tryTip(d('tip-icon-adjust'));});
   d('icon-adjust').addEventListener(  'mouseleave',     function(e) {stopTip(d('tip-icon-adjust'));});
+  d('icon-adjust').addEventListener(  'contextmenu',    function(e) {ctxTip(e, d('tip-icon-adjust'));});
   //#icon-diff
   d('icon-diff').addEventListener(    'click',          iconDiff);
   d('icon-diff').addEventListener(    'mouseenter',     function(e) {tryTip(d('tip-icon-diff'));});
   d('icon-diff').addEventListener(    'mouseleave',     function(e) {stopTip(d('tip-icon-diff'));});
+  d('icon-diff').addEventListener(    'contextmenu',    function(e) {ctxTip(e, d('tip-icon-diff'));});
   //#icon-account
   d('icon-account').addEventListener( 'click',          iconAccount);
   d('icon-account').addEventListener( 'mouseenter',     function(e) {tryTip(d('tip-icon-account'));});
   d('icon-account').addEventListener( 'mouseleave',     function(e) {stopTip(d('tip-icon-account'));});
+  d('icon-account').addEventListener( 'contextmenu',    function(e) {ctxTip(e, d('tip-icon-account'));});
   //#icon-settings
   d('icon-settings').addEventListener('click',          iconSettings);
   d('icon-settings').addEventListener('mouseenter',     function(e) {tryTip(d('tip-icon-settings'));});
   d('icon-settings').addEventListener('mouseleave',     function(e) {stopTip(d('tip-icon-settings'));});
+  d('icon-settings').addEventListener('contextmenu',    function(e) {ctxTip(e, d('tip-icon-settings'));});
 });
 // End EventListeners
 
@@ -167,6 +174,7 @@ var mti;
 var iti;
 
 var toolx = 0, tooly = 0;
+var tooltiptimeout;
 var tooltimeout;
 
 var i;
@@ -349,16 +357,20 @@ function iconsUp() {
   iconsD = false;
 }
 function tryTip(t) {
-  tooltimeout = setTimeout(function() {t.className = 'tip h';}, 1000);
+  tooltiptimeout = setTimeout(function() {t.className = 'tip h';}, 1000);
+}
+function ctxTip(e, t) {
+  e.preventDefault();
+  t.className = 'tip h';
 }
 function stopTip(t) {
-  clearTimeout(tooltimeout);
+  clearTimeout(tooltiptimeout);
   t.className = 'tip';
 }
 //end #icon-menu
 
 function iconAdd() {
-
+  console.log('hi!');
 }
 
 function iconSearch() {
