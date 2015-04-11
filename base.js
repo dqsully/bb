@@ -94,12 +94,12 @@ function getTouchByID(e, id) {
 
 function ab(a, b, n) {
   if(n === undefined) {
-    while(a !== null) {
+    while(a.parentElement !== null) {
       if(a==b) return true; else a = a.parentElement;
     }
   } else {
     for(var i=0; i<n; i++) {
-      if(a===null) break;
+      if(a.parentElement===null) break;
       if(a==b) return true; else a = a.parentElement;
     }
   }
@@ -118,17 +118,17 @@ window.addEventListener('load', function () {
   d('icons-cont').addEventListener(   'touchstart',     function(e) {iconsDown(e.targetTouches[0].pageY, e.targetTouches[0].target);iti=e.targetTouches[0].identifier;});
   document.addEventListener(          'mousemove',      function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'pointermove',    function(e) {iconsMove(e.pageY);});
-  document.addEventListener(          'touchmove',      function(e) {e.preventDefault();iconsMove(getTouchByID(e, iti).pageY);});
+  document.addEventListener(          'touchmove',      function(e) {if(iconsD) {e.preventDefault();iconsMove(getTouchByID(e, iti).pageY);}});
   document.addEventListener(          'mouseup',        function()  {iconsUp();});
   document.addEventListener(          'pointerup',      function()  {iconsUp();});
   document.addEventListener(          'touchend',       function()  {iconsUp();});
   //#icon-menu
   d('icon-menu').addEventListener(    'mousedown',      function(e) {menuDown(e.pageX);});
   d('icon-menu').addEventListener(    'pointerdown',    function(e) {menuDown(e.pageX);});
-  d('icon-menu').addEventListener(    'touchstart',     function(e) {menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier});
+  d('icon-menu').addEventListener(    'touchstart',     function(e) {menuDown(e.targetTouches[0].pageX);mti=e.targetTouches[0].identifier;});
   document.addEventListener(          'mousemove',      function(e) {menuMove(e.pageX);});
   document.addEventListener(          'pointermove',    function(e) {menuMove(e.pageX);});
-  document.addEventListener(          'touchmove',      function(e) {e.preventDefault();menuMove(getTouchByID(e, mti).pageX);});
+  document.addEventListener(          'touchmove',      function(e) {if(menuD) {e.preventDefault();menuMove(getTouchByID(e, mti).pageX);}});
   document.addEventListener(          'mouseup',        function(e) {menuUp(e.target, false);});
   document.addEventListener(          'pointerup',      function(e) {menuUp(e.target, false);});
   document.addEventListener(          'touchend',       function(e) {menuUp(e.target, true);});
@@ -370,27 +370,21 @@ function stopTip(t) {
 //end #icon-menu
 
 function iconAdd() {
-  console.log('hi!');
 }
 
 function iconSearch() {
-
 }
 
 function iconAdjust() {
-
 }
 
 function iconDiff() {
-
 }
 
 function iconAccount() {
-
 }
 
 function iconSettings() {
-
 }
 
 //Begin Functions
