@@ -91,6 +91,20 @@ function getTouchByID(e, id) {
   }
   return null;
 }
+
+function ab(a, b, n) {
+  if(n === undefined) {
+    while(a !== null) {
+      if(a==b) return true; else a = a.parentElement;
+    }
+  } else {
+    for(var i=0; i<n; i++) {
+      if(a===null) break;
+      if(a==b) return true; else a = a.parentElement;
+    }
+  }
+  return false;
+}
 // End Library
 
 
@@ -105,9 +119,9 @@ window.addEventListener('load', function () {
   document.addEventListener(          'mousemove',      function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'pointermove',    function(e) {iconsMove(e.pageY);});
   document.addEventListener(          'touchmove',      function(e) {e.preventDefault();iconsMove(getTouchByID(e, iti).pageY);});
-  document.addEventListener(          'mouseup',        function(e) {iconsUp();});
-  document.addEventListener(          'pointerup',      function(e) {iconsUp();});
-  document.addEventListener(          'touchend',        function(e) {iconsUp();});
+  document.addEventListener(          'mouseup',        function()  {iconsUp();});
+  document.addEventListener(          'pointerup',      function()  {iconsUp();});
+  document.addEventListener(          'touchend',       function()  {iconsUp();});
   //#icon-menu
   d('icon-menu').addEventListener(    'mousedown',      function(e) {menuDown(e.pageX);});
   d('icon-menu').addEventListener(    'pointerdown',    function(e) {menuDown(e.pageX);});
@@ -119,18 +133,32 @@ window.addEventListener('load', function () {
   document.addEventListener(          'pointerup',      function(e) {menuUp(e.target, false);});
   document.addEventListener(          'touchend',       function(e) {menuUp(e.target, true);});
   d('icon-menu').addEventListener(    'click',          menuToggle);
+  d('icon-menu').addEventListener(    'mouseenter',     function(e) {tryTip(d('tip-icon-menu'));});
+  d('icon-menu').addEventListener(    'mouseleave',     function(e) {stopTip(d('tip-icon-menu'));});
   //#icon-add
   d('icon-add').addEventListener(     'click',          iconAdd);
+  d('icon-add').addEventListener(     'mouseenter',     function(e) {tryTip(d('tip-icon-add'));});
+  d('icon-add').addEventListener(     'mouseleave',     function(e) {stopTip(d('tip-icon-add'));});
   //#icon-search
   d('icon-search').addEventListener(  'click',          iconSearch);
+  d('icon-search').addEventListener(  'mouseenter',     function(e) {tryTip(d('tip-icon-search'));});
+  d('icon-search').addEventListener(  'mouseleave',     function(e) {stopTip(d('tip-icon-search'));});
   //#icon-adjust
   d('icon-adjust').addEventListener(  'click',          iconAdjust);
+  d('icon-adjust').addEventListener(  'mouseenter',     function(e) {tryTip(d('tip-icon-adjust'));});
+  d('icon-adjust').addEventListener(  'mouseleave',     function(e) {stopTip(d('tip-icon-adjust'));});
   //#icon-diff
   d('icon-diff').addEventListener(    'click',          iconDiff);
+  d('icon-diff').addEventListener(    'mouseenter',     function(e) {tryTip(d('tip-icon-diff'));});
+  d('icon-diff').addEventListener(    'mouseleave',     function(e) {stopTip(d('tip-icon-diff'));});
   //#icon-account
   d('icon-account').addEventListener( 'click',          iconAccount);
+  d('icon-account').addEventListener( 'mouseenter',     function(e) {tryTip(d('tip-icon-account'));});
+  d('icon-account').addEventListener( 'mouseleave',     function(e) {stopTip(d('tip-icon-account'));});
   //#icon-settings
   d('icon-settings').addEventListener('click',          iconSettings);
+  d('icon-settings').addEventListener('mouseenter',     function(e) {tryTip(d('tip-icon-settings'));});
+  d('icon-settings').addEventListener('mouseleave',     function(e) {stopTip(d('tip-icon-settings'));});
 });
 // End EventListeners
 
@@ -138,12 +166,16 @@ window.addEventListener('load', function () {
 var mti;
 var iti;
 
+var toolx = 0, tooly = 0;
+var tooltimeout;
+
 var i;
 var b;
 var irs;
 var bls;
 var s;
 var ic;
+var tool;
 window.addEventListener('load', function() {
   i = d('icon-menu');
   b = d('body');
@@ -151,6 +183,7 @@ window.addEventListener('load', function() {
   bls = d('body-left-shadow');
   s = d('sidebar');
   ic = d('icons-cont');
+  tool = d('tooltips');
 });
 
 var menuPos;
@@ -166,9 +199,11 @@ function menuToggle() {
     if(s.className == 't') {
       s.className = '';
       b.className = '';
+      tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
     } else {
       s.className = 't';
       b.className = 't';
+      tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
     }
   }
   if(s.className == 't') {
@@ -194,12 +229,14 @@ function menuMove(e) {
     m = e-menuPos;
     s.className = 'm';
     b.className = 'm';
+    tool.className = 'i m';
     irs.className = 'i m';
     bls.className = 'i m';
     if(m+menuS>70) {
       if(m+menuS<350) {
         s.style.transform = 'translate(-' + (350 - m - menuS) + 'px)';
         b.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
+        tool.style.transform = 'translate(' + (toolx = m + menuS - 70) + 'px, -' + tooly + 'px)';
         if(m+menuS-70<140) {
           irs.style.opacity = 1 - (m+menuS-70)/140;
         } else {
@@ -211,6 +248,7 @@ function menuMove(e) {
         s.style.transform = '';
         b.className = 'm t';
         b.style.transform = '';
+        tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
         irs.style.opacity = 0;
         bls.style.opacity = 1;
         rm = 351;
@@ -218,6 +256,7 @@ function menuMove(e) {
     } else {
       s.style.transform = '';
       b.style.transform = '';
+      tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
       irs.style.opacity = '1';
       bls.style.opacity = '0';
       rm = 71;
@@ -230,6 +269,7 @@ function menuUp(e) {
     document.body.className = '';
     irs.className = 'i';
     bls.className = 'i';
+    tool.className = 'i';
     if(s.className == 'm') {
       s.className = '';
       b.className = '';
@@ -240,7 +280,8 @@ function menuUp(e) {
     if(rm>=210) {
       s.className = 't';
       b.className = 't';
-    }
+      tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
+    } else tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
     s.style.transform = '';
     b.style.transform = '';
   }
@@ -252,7 +293,7 @@ function menuUp(e) {
     bls.style.opacity = 0;
   }
   menuD = false;
-  if(e !== i) {
+  if(ab(e, i, 2)) {
     menuM = false;
   }
 }
@@ -266,12 +307,15 @@ function menuScroll(d, b) {
     }
     if(sm + icons.offsetHeight < ic.offsetHeight && sm > 0) {
       ic.style.transform = 'translate(0,-' + sm + 'px)';
+      tool.style.transform = 'translate(' + toolx + 'px, -' + (tooly = sm) + 'px)';
     } else if(sm + icons.offsetHeight >= ic.offsetHeight) {
       sm = ic.offsetHeight - icons.offsetHeight;
       ic.style.transform = 'translate(0,-' + sm + 'px)';
+      tool.style.transform = 'translate(' + toolx + 'px, -' + (tooly = sm) + 'px)';
     } else if(sm < 0) {
       ic.style.transform = '';
       sm = 0;
+      tool.style.transform = 'translate(' + toolx + 'px, -' + (tooly = sm) + 'px)';
     }
   }
 }
@@ -279,14 +323,16 @@ function menuResize() {
   if(sm + icons.offsetHeight >= ic.offsetHeight) {
     sm = ic.offsetHeight - icons.offsetHeight;
     ic.style.marginTop = '-' + sm + 'px';
+    tool.style.transform = 'translate(' + toolx + 'px, -' + (tooly = sm) + 'px)';
   }
   if(sm < 0) {
     ic.style.marginTop = '0';
     sm = 0;
+    tool.style.transform = 'translate(' + toolx + 'px, -' + (tooly = sm) + 'px)';
   }
 }
 function iconsDown(e, t) {
-  if(t.id != 'icon-menu') {
+  if(!ab(t, i, 2)) {
     iconsD = true;
     iconsPos = e;
   }
@@ -301,6 +347,13 @@ function iconsMove(e) {
 function iconsUp() {
   document.body.className = '';
   iconsD = false;
+}
+function tryTip(t) {
+  tooltimeout = setTimeout(function() {t.className = 'tip h';}, 1000);
+}
+function stopTip(t) {
+  clearTimeout(tooltimeout);
+  t.className = 'tip';
 }
 //end #icon-menu
 
