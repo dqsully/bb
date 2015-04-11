@@ -293,7 +293,7 @@ function menuUp(e) {
     bls.style.opacity = 0;
   }
   menuD = false;
-  if(ab(e, i, 2)) {
+  if(e !== i && menuM) {
     menuM = false;
   }
 }
