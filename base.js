@@ -184,6 +184,8 @@ var bls;
 var s;
 var ic;
 var tool;
+var cs;
+var title;
 window.addEventListener('load', function() {
   i = d('icon-menu');
   b = d('body');
@@ -192,6 +194,8 @@ window.addEventListener('load', function() {
   s = d('sidebar');
   ic = d('icons-cont');
   tool = d('tooltips');
+  cs = d('content-shade');
+  title = d('title');
 });
 
 var menuPos;
@@ -207,19 +211,22 @@ function menuToggle() {
     if(s.className == 't') {
       s.className = '';
       b.className = '';
+      bls.className = 'i';
       tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
+      cs.className = 'i';
+      irs.style.opacity = 1;
+      bls.style.opacity = 0;
+      title.style.transform = '';
     } else {
       s.className = 't';
       b.className = 't';
+      bls.className = 'i t';
       tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
+      irs.style.opacity = 0;
+      bls.style.opacity = 1;
+      cs.className = 'i s';
+      title.style.transform = 'translate(40px)';
     }
-  }
-  if(s.className == 't') {
-    irs.style.opacity = 0;
-    bls.style.opacity = 1;
-  } else {
-    irs.style.opacity = 1;
-    bls.style.opacity = 0;
   }
   menuM = false;
 }
@@ -238,13 +245,18 @@ function menuMove(e) {
     s.className = 'm';
     b.className = 'm';
     tool.className = 'i m';
+    cs.className = 'i m';
+    title.className = 'u m';
     irs.className = 'i m';
     bls.className = 'i m';
     if(m+menuS>70) {
       if(m+menuS<350) {
         s.style.transform = 'translate(-' + (350 - m - menuS) + 'px)';
-        b.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
+        b.style.transform = 'translate(' + (m + menuS - 70)*6/7 + 'px)';
+        bls.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
         tool.style.transform = 'translate(' + (toolx = m + menuS - 70) + 'px, -' + tooly + 'px)';
+        cs.style.opacity = (m+menuS-70)/280*0.2;
+        title.style.transform = 'translate(' + (m + menuS - 70)/7 + 'px)';
         if(m+menuS-70<140) {
           irs.style.opacity = 1 - (m+menuS-70)/140;
         } else {
@@ -256,16 +268,24 @@ function menuMove(e) {
         s.style.transform = '';
         b.className = 'm t';
         b.style.transform = '';
+        bls.className = 'i m t';
+        bls.style.transform = '';
         tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
-        irs.style.opacity = 0;
-        bls.style.opacity = 1;
+        irs.style.opacity = '0';
+        cs.style.opacity = '0.2';
+        cs.className = 'i m s';
+        title.style.transform = 'translate(40px)';
+        bls.style.opacity = '1';
         rm = 351;
       }
     } else {
       s.style.transform = '';
       b.style.transform = '';
+      bls.style.transform = '';
       tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
       irs.style.opacity = '1';
+      cs.style.opacity = '';
+      title.style.transform = '';
       bls.style.opacity = '0';
       rm = 71;
     }
@@ -277,27 +297,40 @@ function menuUp(e) {
     document.body.className = '';
     irs.className = 'i';
     bls.className = 'i';
+    title.className = 'u';
     tool.className = 'i';
+    title.style.className = '';
     if(s.className == 'm') {
       s.className = '';
       b.className = '';
+      bls.className = 'i';
+      cs.className = 'i';
+      title.style.transform = '';
     } else if(s.className == 'm t') {
       s.className = 't';
       b.className = 't';
+      bls.className = 'i t';
+      cs.className = 'i s';
+      title.style.transform  = 'translate(40px)';
     }
     if(rm>=210) {
       s.className = 't';
       b.className = 't';
+      bls.className = 'i t';
       tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
     } else tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
     s.style.transform = '';
     b.style.transform = '';
+    bls.style.transform = '';
   }
+  cs.style.opacity = '';
   if(s.className == 't') {
     irs.style.opacity = 0;
+    cs.className = 'i s';
     bls.style.opacity = 1;
   } else {
     irs.style.opacity = 1;
+    cs.className = 'i';
     bls.style.opacity = 0;
   }
   menuD = false;

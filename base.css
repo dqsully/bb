@@ -25,6 +25,7 @@ body.g *, body.g {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select :none;
+  cursor: default;
 }
 .vl {                           /*Vertical line*/
   height: 80%;
@@ -86,9 +87,10 @@ body.g *, body.g {
   left: 0;
   background-color: #fe3a09;
   border-right: 1px solid black;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s;
   overflow-x: hidden;
   transform: translate(-280px);
+  z-index: 2;
 }
   #sidebar.t {
     transform: translate(0);
@@ -135,8 +137,8 @@ body.g *, body.g {
   top: 0;
   height: 100%;
   width: 10px;
-  z-index: 2;
-  transition: opacity 0.6s ease;
+  z-index: 200;
+  transition: opacity 0.6s;
 }
   #icons-right-shadow.m, #icons-left-shadow.m, #body-left-shadow.m {
     transition: opacity 0s;
@@ -145,10 +147,22 @@ body.g *, body.g {
   right: 0;
   background: linear-gradient(to right, transparent, rgba(0,0,0,.5));
 }
-#icons-left-shadow, #body-left-shadow {
+#icons-left-shadow {
   left: 0;
   background: linear-gradient(to left, transparent, rgba(0,0,0,.5));
 }
+#body-left-shadow {
+  left: 71px;
+  background: linear-gradient(to left, transparent, rgba(0,0,0,.5));
+  transition: transform 0.6s , opacity 0.6s;
+  width: 14px;
+}
+  #body-left-shadow.m {
+    transition: transform 0s, opacity 0s;
+  }
+  #body-left-shadow.t {
+    transform: translate(280px);
+  }
 
 
 #top {
@@ -174,7 +188,11 @@ body.g *, body.g {
   color: white;
   position: absolute;
   letter-spacing: -1px;
+  transition: transform 0.6s;
 }
+  #title.m {
+    transition: transform 0s;
+  }
 
 #body {
   position: absolute;
@@ -182,14 +200,13 @@ body.g *, body.g {
   top: 0;
   bottom: 0;
   right: 0;
-  transform: translate(0);
-  transition: transform 0.6s ease;
+  transition: transform 0.6s;
 }
   #body.m {
     transition: transform 0s;
   }
   #body.t {
-    transform: translate(280px);
+    transform: translate(240px);
   }
 
 #tooltips {
@@ -199,7 +216,7 @@ body.g *, body.g {
   bottom: 0;
   width: 140px;
   transform: translate(0);
-  transition: transform 0.6s ease;
+  transition: transform 0.6s;
   z-index: 3;
 }
   #tooltips.m {
@@ -238,3 +255,20 @@ body.g *, body.g {
   padding: 9px;
   overflow: auto;
 }
+  #content-shade {
+    top: 61px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: black;
+    opacity: 0;
+    z-index: 30;
+    transition: opacity 0.6s;
+  }
+    #content-shade.s {
+      opacity: 0.2;
+    }
+    #content-shade.m {
+      transition: opacity 0s;
+    }
