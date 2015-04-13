@@ -300,12 +300,12 @@ function menuUp(e) {
     title.className = 'u';
     tool.className = 'i';
     title.style.className = '';
+    title.style.transform = '';
     if(s.className == 'm') {
       s.className = '';
       b.className = '';
       bls.className = 'i';
       cs.className = 'i';
-      title.style.transform = '';
     } else if(s.className == 'm t') {
       s.className = 't';
       b.className = 't';
@@ -318,6 +318,7 @@ function menuUp(e) {
       b.className = 't';
       bls.className = 'i t';
       tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
+      title.style.transform = 'translate(40px)';
     } else tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
     s.style.transform = '';
     b.style.transform = '';

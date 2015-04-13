@@ -132,6 +132,19 @@ body.g *, body.g {
   -webkit-filter: drop-shadow(0 0 5px white);
 }
 
+#sidebar-cont {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 71px;
+  overflow: hidden;
+  position: absolute;
+}
+  #sidebar-cont > div {
+    top: 0;
+
+  }
+
 #icons-right-shadow, #icons-left-shadow, #body-left-shadow {
   position: absolute;
   top: 0;
