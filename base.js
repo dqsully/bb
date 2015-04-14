@@ -259,8 +259,10 @@ function menuMove(e) {
         title.style.transform = 'translate(' + (m + menuS - 70)/7 + 'px)';
         if(m+menuS-70<140) {
           irs.style.opacity = 1 - (m+menuS-70)/140;
+          bls.style.opacity = 0;
         } else {
           bls.style.opacity = (m+menuS-210)/140;
+          irs.style.opacity = 0;
         }
         rm = m + menuS;
       } else {
