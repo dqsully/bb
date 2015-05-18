@@ -70,6 +70,7 @@ body.g *, body.g {
   }
   .hl.s {                         /*Slim margins*/
     margin: 4px 0;
+    height: 2px;
   }
   .hl.n {                         /*No margins*/
     margin: 0;
