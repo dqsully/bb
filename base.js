@@ -37,19 +37,18 @@ function outclickpush(elem, func) {
 document.addEventListener('click' ,function(e) {
   var miss;
   var tmp = [];
-  var cont = false;
-  do {
+  while(true) {
     miss = outclicks.pop();
     if(miss === undefined) break;
     if(typeof miss == "object" && typeof miss[0] == "object" && typeof miss[1] == "function") {
-      if(e.target === miss[0]) {
+      if(ab(miss[i], e.target)) {
         tmp.push(miss);
       } else {
         if(miss[1](e) === false) tmp.push(miss);
-        else cont = true;
+        else break;
       }
     }
-  } while(!cont);
+  }
   for(var i = 0; i<tmp.length; i++) {
     outclicks.push(tmp[i]);
   }

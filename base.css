@@ -81,12 +81,11 @@ body.g *, body.g {
 
 #sidebar {
   position: absolute;
-  width: 350px;
+  width: 351px;
   bottom: 0;
   top: 0;
   left: 0;
   background-color: #fe3a09;
-  border-right: 1px solid black;
   transition: transform 0.6s;
   overflow-x: hidden;
   transform: translate(-280px);
@@ -104,8 +103,7 @@ body.g *, body.g {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 70px;
-  border-left: 1px solid black;
+  width: 71px;
   overflow: hidden;
 }
   #icons svg{
@@ -184,8 +182,8 @@ body.g *, body.g {
   left: 0;
   right: 0;
   background-color: #fe3a09;
-  border-bottom: 1px solid black;
   position: absolute;
+  box-shadow: 0 0 10px;
 }
 
 #title {
@@ -274,7 +272,7 @@ body.g *, body.g {
     left: 0;
     right: 0;
     position: absolute;
-    background-color: black;
+    background-color: #120f25;
     opacity: 0;
     z-index: 30;
     transition: opacity 0.6s;
