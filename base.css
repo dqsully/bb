@@ -164,7 +164,7 @@ body.g *, body.g {
 }
 #body-left-shadow {
   left: 71px;
-  background: linear-gradient(to left, transparent, rgba(0,0,0,.5));
+  background: linear-gradient(to left, transparent, rgba(0,0,0,.35));
   transition: transform 0.6s , opacity 0.6s;
   width: 14px;
 }
@@ -278,7 +278,7 @@ body.g *, body.g {
     transition: opacity 0.6s;
   }
     #content-shade.s {
-      opacity: 0.2;
+      opacity: 0.15;
     }
     #content-shade.m {
       transition: opacity 0s;
