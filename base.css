@@ -110,11 +110,11 @@ body.g *, body.g {
   #icons .ic {
     cursor: pointer;
     transition: background-color .25s ease-out;
+    background-color: transparent;
     display: block;
   }
   #icons .ic:not(#icon-menu) {
     height: 70px;
-    transition: background-color .0s;
   }
   #icons .ic:hover {
     background-color: rgba(0, 0, 0, 0.25);
