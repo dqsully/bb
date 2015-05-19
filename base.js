@@ -201,7 +201,7 @@ var menuPos;
 var menuD = false;
 var menuS;
 var menuM = false;
-var rm = 71;
+var rm = 70;
 var sm = 0;
 var iconsD = false;
 var iconsPos;
@@ -220,7 +220,7 @@ function menuToggle() {
       s.className = 't';
       b.className = 't';
       bls.className = 'i t';
-      tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
+      tool.style.transform = 'translate(' + (toolx = 281) + 'px, -' + tooly + 'px)';
       irs.style.opacity = 0;
       bls.style.opacity = 1;
       cs.className = 'i s';
@@ -254,7 +254,7 @@ function menuMove(e) {
         b.style.transform = 'translate(' + (m + menuS - 70)*6/7 + 'px)';
         bls.style.transform = 'translate(' + (m + menuS - 70) + 'px)';
         tool.style.transform = 'translate(' + (toolx = m + menuS - 70) + 'px, -' + tooly + 'px)';
-        cs.style.opacity = (m+menuS-70)/280*0.2;
+        cs.style.opacity = (m+menuS-70)/281*0.2;
         title.style.transform = 'translate(' + (m + menuS - 70)/7 + 'px)';
         if(m+menuS-70<140) {
           irs.style.opacity = 1 - (m+menuS-70)/140;
@@ -271,7 +271,7 @@ function menuMove(e) {
         b.style.transform = '';
         bls.className = 'i m t';
         bls.style.transform = '';
-        tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
+        tool.style.transform = 'translate(' + (toolx = 281) + 'px, -' + tooly + 'px)';
         irs.style.opacity = '0';
         cs.style.opacity = '0.2';
         cs.className = 'i m s';
@@ -288,7 +288,7 @@ function menuMove(e) {
       cs.style.opacity = '';
       title.style.transform = '';
       bls.style.opacity = '0';
-      rm = 71;
+      rm = 70;
     }
     // console.log('menuMove took ' + (performance.now()-t) + ' milliseconds to run');
   }
@@ -318,7 +318,7 @@ function menuUp(e) {
       s.className = 't';
       b.className = 't';
       bls.className = 'i t';
-      tool.style.transform = 'translate(' + (toolx = 280) + 'px, -' + tooly + 'px)';
+      tool.style.transform = 'translate(' + (toolx = 281) + 'px, -' + tooly + 'px)';
       title.style.transform = 'translate(40px)';
     } else tool.style.transform = 'translate(' + (toolx = 0) + 'px, -' + tooly + 'px)';
     s.style.transform = '';

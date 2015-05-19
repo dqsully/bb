@@ -62,7 +62,7 @@ body.g *, body.g {
     height: 2px;
   }
   .hl.w {                         /*White*/
-    background-color: white;
+    background-color: rgba(0,0,0,0.5);
   }
   .hl.f {                         /*Full*/
     width: 100%;
@@ -89,7 +89,7 @@ body.g *, body.g {
   background-color: #fe3a09;
   transition: transform 0.6s;
   overflow-x: hidden;
-  transform: translate(-280px);
+  transform: translate(-281px);
   z-index: 2;
 }
   #sidebar.t {
@@ -104,38 +104,47 @@ body.g *, body.g {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 71px;
+  width: 70px;
   overflow: hidden;
 }
-  #icons svg{
+  #icons .ic {
     cursor: pointer;
-    transition: filter .25s ease-out, -webkit-filter .25s ease-out;
-    filter: drop-shadow(0 0 5px transparent);
-    -webkit-filter: drop-shadow(0 0 5px transparent);
+    transition: background-color .25s ease-out;
     display: block;
+  }
+  #icons .ic:not(#icon-menu) {
+    height: 70px;
+    transition: background-color .0s;
+  }
+  #icons .ic:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    transition: background-color .0s;
+  }
+  #icons .ic svg {
+    transition: transform 0.25s ease-out;
     width: 70px;
+    pointer-events: none;
   }
-  #icons svg:hover{
-    filter: drop-shadow(0 0 5px white);
-    -webkit-filter: drop-shadow(0 0 5px white);
-  }
-  #icons svg:not(#icon-menu) {
+  #icons .ic:not(#icon-menu) svg {
     height: 70px;
   }
-  #icon-menu {
+  #icons .ic:active svg {
+    transform: scale(1.1);
+    transition: transform 0s ease-out;
+  }
+  #icon-menu, #icon-menu svg {
     height: 60px;
   }
 
 #sidebar.m #icon-menu {
-  filter: drop-shadow(0 0 5px white);
-  -webkit-filter: drop-shadow(0 0 5px white);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 #sidebar-cont {
   top: 0;
   bottom: 0;
   left: 0;
-  right: 71px;
+  right: 70px;
   overflow: hidden;
   position: absolute;
 }
@@ -164,7 +173,7 @@ body.g *, body.g {
   background: linear-gradient(to left, transparent, rgba(0,0,0,.5));
 }
 #body-left-shadow {
-  left: 71px;
+  left: 70px;
   background: linear-gradient(to left, transparent, rgba(0,0,0,.35));
   transition: transform 0.6s , opacity 0.6s;
   width: 14px;
@@ -173,7 +182,7 @@ body.g *, body.g {
     transition: transform 0s, opacity 0s;
   }
   #body-left-shadow.t {
-    transform: translate(280px);
+    transform: translate(281px);
   }
 
 
@@ -208,7 +217,7 @@ body.g *, body.g {
 
 #body {
   position: absolute;
-  left: 71px;
+  left: 70px;
   top: 0;
   bottom: 0;
   right: 0;
@@ -223,7 +232,7 @@ body.g *, body.g {
 
 #tooltips {
   position: absolute;
-  left: 71px;
+  left: 70px;
   top: 0;
   bottom: 0;
   width: 140px;
